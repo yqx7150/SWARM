@@ -1,0 +1,28 @@
+train:
+python main.py --config=aapm_sin_ncsnpp_gb.py --workdir=exp --mode=train --eval_folder=result
+
+test:
+python A_PCsampling_demo.py
+
+test默认调用exp_demo下的模型
+
+--workdir=exp_zl
+--mode=train
+--eval_folder=result
+--config=aapm_sin_ncsnpp_gb.py
+
+CUDA_VISIBLE_DEVICES=0 python main.py --config=aapm_sin_ncsnpp_ftt.py --workdir=exp_FFT1_XW --mode=train --eval_folder=result
+
+
+vali[vali < 0] = 0
+
+CUDA_VISIBLE_DEVICES=0 python A_PCsampling_patchmask7.py
+
+DFT2:
+#幅度：
+CUDA_VISIBLE_DEVICES=2 python main.py --config=aapm_sin_ncsnpp_patchmask7.py --workdir=exp_patchmask7 --mode=train --eval_folder=result
+
+CUDA_VISIBLE_DEVICES=2 python main.py --config=aapm_sin_ncsnpp_fft.py --workdir=exp_fftblock --mode=train --eval_folder=result
+
+
+#sinogram+ spare1+spare2
